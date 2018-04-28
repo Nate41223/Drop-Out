@@ -11,7 +11,13 @@ function Game() {
     
     this.init = function() {
         this.player = new Player();
+        keyboard.init();
     };
+    
+    pixi.ticker.add((dt)=> {
+        this.player.update(dt);
+    });
+    
 }
 const game = new Game();
 game.init();
