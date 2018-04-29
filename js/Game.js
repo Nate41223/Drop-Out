@@ -3,12 +3,17 @@ function Game() {
     this.player = null;
     this.room = null;
     this.tiles = [];
+    this.startTimer = 5;
     
-    const pixi = new PIXI.Application({width:1000,height:1000,backgroundColor:0x0000FF});
+    const pixi = new PIXI.Application({width:780,height:910,backgroundColor:0x0000FF});
     document.body.append(pixi.view);
     
     this.stage = ()=> {
         return pixi.stage;
+    };
+    
+    this.getS = ()=> {
+        return pixi.ticker.elapsedMS/1000;
     };
     
     this.init = function() {
@@ -34,13 +39,31 @@ function Game() {
     };
     
     pixi.ticker.add((dt)=> {
+        
+        if(this.startTimer > 0) {
+            this.startTimer -= this.getS();
+        }else this.startTimer = 0;
+        
         this.player.update(dt);
+        var isSafe = false;
         
         for (var i = this.tiles.length - 1; i >= 0; i--) {
             if(this.isColliding(this.player.sprite, this.tiles[i].sprite)) {
-                if(this.tiles[i].name == "wall") this.player.handleCollision(dt,this.player.sprite.getBounds(),this.tiles[i].sprite.getBounds());
+                if(this.tiles[i].name == "wall") {
+                    this.player.handleCollision(dt,this.player.sprite.getBounds(),this.tiles[i].sprite.getBounds());
+                };
+                if(this.tiles[i].name == "safe") {
+                    isSafe = true;
+                };
+                if(this.tiles[i].name == "disp" || this.tiles[i].name == "help") {
+                    isSafe = true;
+                };
+            };
+            if(this.tiles[i].name == "disp") {
+                this.tiles[i].update(this.startTimer, this.getS());  
             };
         };
+        console.log(isSafe);
     });
     
     this.isColliding = function(a,b) {

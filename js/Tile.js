@@ -24,4 +24,11 @@ function Tile(name, gridx, gridy) {
         this.y = this.sprite.y;
         game.stage().addChild(this.sprite);
     };
+    
+    this.update = function(startTimer, dts) {
+        if(startTimer <= 2) {
+            this.sprite.alpha -= dts/2;
+        };
+    };
+    
 }
