@@ -13,7 +13,7 @@ function Player() {
     sprite.x = this.x;
     sprite.y = this.y;
     sprite.anchor.set(.5);
-    sprite.scale.set(5);
+    sprite.scale.set(4);
     this.width = sprite.width * this.width; // sprites don't calculate sprite width till second frame
     this.height = sprite.height * this.height; // sprites don't calculate sprite height till second frame
     game.stage().addChild(sprite);
