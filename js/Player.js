@@ -9,16 +9,18 @@ function Player() {
     this.vMax = 5;
     
     
-    const sprite = new PIXI.Sprite.fromImage("imgs/Player.png");
-    sprite.x = this.x;
-    sprite.y = this.y;
-    sprite.anchor.set(.5);
-    sprite.scale.set(4);
-    this.width = sprite.width * this.width; // sprites don't calculate sprite width till second frame
-    this.height = sprite.height * this.height; // sprites don't calculate sprite height till second frame
-    game.stage().addChild(sprite);
+    this.sprite = new PIXI.Sprite.fromImage("imgs/Player.png");
+    this.sprite.x = this.x;
+    this.sprite.y = this.y;
+    this.sprite.anchor.set(.5);
+    this.sprite.scale.set(3);
+    this.width = this.sprite.width * this.width; // sprites don't calculate sprite width till second frame
+    this.height = this.sprite.height * this.height; // sprites don't calculate sprite height till second frame
+    game.stage().addChild(this.sprite);
     
     this.update = function(dt) {
+        
+        //console.log(this.sprite.getBounds);
         
         var moveH = 0;
         var moveV = 0;
@@ -60,7 +62,25 @@ function Player() {
         this.y += this.vy * dt;
         this.x += this.vx * dt;
         
-        sprite.x = this.x;
-        sprite.y = this.y;
+        this.sprite.x = this.x;
+        this.sprite.y = this.y;
+    };
+    this.handleCollision = function(dt, playerB, tileB) {
+        var potentialY = 0;
+        var potentialX = 0;
+        if(playerB.y <= tileB.y && playerB.y + playerB.height >= tileB.y) potentialY = tileB.y - playerB.height/2; //above
+        if(playerB.y >= tileB.y && playerB.y <= tileB.y + tileB.height) potentialY = tileB.y + tileB.height + playerB.height/2; //below
+        if(playerB.x <= tileB.x && playerB.x + playerB.width >= tileB.x) potentialX = tileB.x - playerB.width/2; //left
+        if(playerB.x >= tileB.x && playerB.x <= tileB.x + tileB.width) potentialX = tileB.x + tileB.width + playerB.width/2;//right
+        
+        var distY = Math.abs(potentialY - this.y);
+        var distX = Math.abs(potentialX - this.x);
+        if (distX < distY) this.x = potentialX;
+        else if (distX > distY) this.y = potentialY;
+        //this.y -= this.vy * dt;
+        //this.x -= this.vx * dt;
+        
+        this.sprite.x = this.x;
+        this.sprite.y = this.y;
     };
 }
