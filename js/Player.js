@@ -16,7 +16,7 @@ function Player() {
     this.sprite.scale.set(3);
     this.width = this.sprite.width * this.width; // sprites don't calculate sprite width till second frame
     this.height = this.sprite.height * this.height; // sprites don't calculate sprite height till second frame
-    game.stage().addChild(this.sprite);
+    sceneManager.game.stage().addChild(this.sprite);
     
     this.update = function(dt) {
         
@@ -82,5 +82,8 @@ function Player() {
         
         this.sprite.x = this.x;
         this.sprite.y = this.y;
+    };
+    this.dispose = function() {
+        sceneManager.game.stage().removeChild(this.sprite);
     };
 }

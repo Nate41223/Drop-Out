@@ -22,7 +22,7 @@ function Tile(name, gridx, gridy) {
         this.sprite.y = gridy * 65 + 65/2;
         this.x = this.sprite.x;
         this.y = this.sprite.y;
-        game.stage().addChild(this.sprite);
+        sceneManager.game.stage().addChild(this.sprite);
     };
     
     this.update = function(startTimer, dts) {
@@ -30,5 +30,7 @@ function Tile(name, gridx, gridy) {
             this.sprite.alpha -= dts/2;
         };
     };
-    
+    this.dispose = function() {
+        sceneManager.game.stage().removeChild(this.sprite);
+    };
 }
