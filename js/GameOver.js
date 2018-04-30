@@ -3,7 +3,7 @@ function GameOver() {
     this.replayLevelButton = null;
     this.newLevelButton = null;
     
-    this.init = function() {
+    this.init = function(room) {
         if (sceneManager.game.hasWon == false) {
             this.text = new PIXI.Text("Game Over",{fontFamily: "Arial", fontSize: 60, fill: 0xffffff, align: 'center'});
             this.text.x = sceneManager.game.width()/2;
@@ -44,6 +44,7 @@ function GameOver() {
     };
     this.onNewUp = ()=> {
         this.dispose();
+        sceneManager.game.room = null;
         sceneManager.newGame();
     };
     this.dispose = function() {

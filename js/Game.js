@@ -3,7 +3,7 @@ function Game() {
     this.player = null;
     this.room = null;
     this.tiles = [];
-    this.startTimer = 5;
+    this.startTimer = 2.5;
     this.winLoseScreen = null;
     this.hasWonTimer = .75;
     this.hasWon = false;
@@ -30,7 +30,11 @@ function Game() {
     this.init = function() {
         
         keyboard.init();
-        this.room = "room" + 1;
+        console.log(Object.keys(rooms).length);
+        if(this.room == null){
+            this.room = "room" + Math.round(Math.random() * (Object.keys(rooms).length - 1) + 1);
+        };
+        console.log(this.room);
         /*
         var xp = "room" + 1;
         console.log(xp);
@@ -61,7 +65,7 @@ function Game() {
             
             for (var i = this.tiles.length - 1; i >= 0; i--) {
                 if(this.isColliding(this.player.sprite, this.tiles[i].sprite)) {
-                    if(this.tiles[i].name == "wall") {
+                    if(this.tiles[i].name == "wall" || this.tiles[i].name == "disp" && this.startTimer != 0||this.tiles[i].name == "help" && this.startTimer != 0) {
                         this.player.handleCollision(dt,this.player.sprite.getBounds(),this.tiles[i].sprite.getBounds());
                     };
                     if(this.tiles[i].name == "saf1") {
@@ -109,7 +113,7 @@ function Game() {
     };
     this.gameOver = function() {
         this.winLoseScreen = new GameOver();
-        this.winLoseScreen.init();
+        this.winLoseScreen.init(this.room);
     };
 }
 //const game = new Game();

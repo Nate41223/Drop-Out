@@ -28,8 +28,8 @@ function Tile(name, gridx, gridy) {
     };
     
     this.update = function(startTimer, dts) {
-        if(startTimer <= 2) {
-            this.sprite.alpha -= dts/2;
+        if(startTimer <= 1) {
+            this.sprite.alpha -= dts;
         };
     };
     this.dispose = function() {

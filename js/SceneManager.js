@@ -8,7 +8,7 @@ function SceneManager() {
     };
     this.newGame = function() {
         this.game.init();
-        this.game.startTimer = 5;
+        this.game.startTimer = 2.5;
         this.game.hasWon = false;
         this.game.hasWonTimer = .75;
     };
