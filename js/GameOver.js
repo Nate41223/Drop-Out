@@ -18,31 +18,31 @@ function GameOver() {
             sceneManager.game.stage().addChild(this.text);
         };
         
-        this.replayLevelButton = new PIXI.Sprite.fromImage("imgs/Safe.png");
+        this.replayLevelButton = new PIXI.Sprite.fromImage("imgs/RetryStage.png");
         this.replayLevelButton.anchor.set(.5);
         this.replayLevelButton.x = sceneManager.game.width()/3;
         this.replayLevelButton.y = (sceneManager.game.height()/3)*2;
         this.replayLevelButton.interactive = true;
         this.replayLevelButton.buttonMode = true;
-        this.replayLevelButton.on('pointerdown', this.onReplayDown);
+        this.replayLevelButton.on('pointerup', this.onReplayUp);
         sceneManager.game.stage().addChild(this.replayLevelButton);
         
         
-        this.newLevelButton = new PIXI.Sprite.fromImage("imgs/Disp.png");
+        this.newLevelButton = new PIXI.Sprite.fromImage("imgs/NewStage.png");
         this.newLevelButton.anchor.set(.5);
         this.newLevelButton.x = (sceneManager.game.width()/3)*2;
         this.newLevelButton.y = (sceneManager.game.height()/3)*2;
         this.newLevelButton.interactive = true;
         this.newLevelButton.buttonMode = true;
-        this.newLevelButton.on('pointerdown', this.onNewDown);
+        this.newLevelButton.on('pointerup', this.onNewUp);
         sceneManager.game.stage().addChild(this.newLevelButton);
     };
     
-    this.onReplayDown = ()=> {
+    this.onReplayUp = ()=> {
         this.dispose();
         sceneManager.newGame();
     };
-    this.onNewDown = ()=> {
+    this.onNewUp = ()=> {
         this.dispose();
         sceneManager.newGame();
     };

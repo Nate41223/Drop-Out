@@ -2,11 +2,12 @@ function Player() {
     
     this.x = 100;
     this.y = 815;
-    this.width = 10;
-    this.height = 10;
+    this.width = 30;
+    this.height = 30;
     this.vx = 0;
     this.vy = 0;
     this.vMax = 5;
+    this.rotationSpeed = 30;
     
     
     this.sprite = new PIXI.Sprite.fromImage("imgs/Player.png");
@@ -14,14 +15,16 @@ function Player() {
     this.sprite.y = this.y;
     this.sprite.anchor.set(.5);
     this.sprite.scale.set(3);
-    this.width = this.sprite.width * this.width; // sprites don't calculate sprite width till second frame
-    this.height = this.sprite.height * this.height; // sprites don't calculate sprite height till second frame
+    //this.width = this.sprite.width * this.width; // sprites don't calculate sprite width till second frame
+    //this.height = this.sprite.height * this.height; // sprites don't calculate sprite height till second frame
+    this.sprite.width = this.width;
+    this.sprite.height = this.height;
     sceneManager.game.stage().addChild(this.sprite);
     
-    this.update = function(dt) {
+    this.update = function(dt, dts) {
         
         //console.log(this.sprite.getBounds);
-        
+        this.sprite.rotation += this.rotationSpeed * dts;
         var moveH = 0;
         var moveV = 0;
         

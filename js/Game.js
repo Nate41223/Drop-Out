@@ -55,7 +55,7 @@ function Game() {
                 this.startTimer -= this.getS();
             }else this.startTimer = 0;
             
-            this.player.update(dt);
+            this.player.update(dt, this.getS());
             
             var isSafe = false;
             
