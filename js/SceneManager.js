@@ -8,6 +8,9 @@ function SceneManager() {
     };
     this.newGame = function() {
         this.game.init();
+        this.game.startTimer = 5;
+        this.game.hasWon = false;
+        this.game.hasWonTimer = .75;
     };
 }
 const sceneManager = new SceneManager();

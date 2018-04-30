@@ -5,6 +5,7 @@ function Game() {
     this.tiles = [];
     this.startTimer = 5;
     this.winLoseScreen = null;
+    this.hasWonTimer = .75;
     this.hasWon = false;
     
     const pixi = new PIXI.Application({width:780,height:910,backgroundColor:0x000000});
@@ -63,7 +64,17 @@ function Game() {
                     if(this.tiles[i].name == "wall") {
                         this.player.handleCollision(dt,this.player.sprite.getBounds(),this.tiles[i].sprite.getBounds());
                     };
-                    if(this.tiles[i].name == "safe") {
+                    if(this.tiles[i].name == "saf1") {
+                        isSafe = true;
+                        this.hasWonTimer -= this.getS();
+                        if(this.hasWonTimer <= 0) {
+                            this.hasWon = true;
+                            this.reset();
+                            this.gameOver();
+                            break;
+                        }; 
+                    };
+                    if(this.tiles[i].name == "saf2") {
                         isSafe = true;
                     };
                     if(this.tiles[i].name == "disp" || this.tiles[i].name == "help") {
@@ -94,7 +105,6 @@ function Game() {
             this.tiles[i].dispose();
             this.tiles.splice(i,1);
         };
-        this.startTimer = 5;
         //sceneManager.newGame();
     };
     this.gameOver = function() {

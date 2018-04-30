@@ -9,7 +9,8 @@ function Tile(name, gridx, gridy) {
     
     this.init = function() {
         if(name == "wall") this.sprite = new PIXI.Sprite.fromImage("imgs/Wall.png");
-        if(name == "safe") this.sprite = new PIXI.Sprite.fromImage("imgs/Safe.png");
+        if(name == "saf1") this.sprite = new PIXI.Sprite.fromImage("imgs/Safe.png");
+        if(name == "saf2") this.sprite = new PIXI.Sprite.fromImage("imgs/Safe.png");
         if(name == "help") this.sprite = new PIXI.Sprite.fromImage("imgs/Help.png");
         if(name == "disp") this.sprite = new PIXI.Sprite.fromImage("imgs/Disp.png");
         

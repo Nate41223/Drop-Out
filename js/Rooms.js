@@ -3,7 +3,7 @@ const rooms = {};
 rooms["room1"] = {
     grid: [
         ["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"],
-        ["wall","safe","safe","safe","safe","safe","safe","safe","safe","safe","safe","wall"],
+        ["wall","saf1","saf1","saf1","saf1","saf1","saf1","saf1","saf1","saf1","saf1","wall"],
         ["wall","    ","    ","    ","    ","disp","    ","    ","    ","    ","    ","wall"],
         ["wall","    ","    ","    ","    ","help","    ","    ","    ","    ","    ","wall"],
         ["wall","    ","    ","    ","    ","disp","    ","    ","    ","    ","    ","wall"],
@@ -14,7 +14,7 @@ rooms["room1"] = {
         ["wall","    ","    ","    ","    ","disp","    ","    ","    ","    ","    ","wall"],
         ["wall","    ","    ","    ","    ","help","    ","    ","    ","    ","    ","wall"],
         ["wall","    ","    ","    ","    ","disp","    ","    ","    ","    ","    ","wall"],
-        ["wall","safe","safe","safe","safe","safe","safe","safe","safe","safe","safe","wall"],
+        ["wall","saf2","saf2","saf2","saf2","saf2","saf2","saf2","saf2","saf2","saf2","wall"],
         ["wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall","wall"],
     ],
 }
